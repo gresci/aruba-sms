@@ -2,14 +2,14 @@
     "name": "gresci/aruba-sms",
     "description": "Aruba SMS Notifications channel for Laravel 5.3.",
     "keywords": ["laravel", "notifications", "smscentre", "smsc", "aruba"],
-    "homepage": "https://github.com/gresci/aruba-sms",
+    "homepage": "http://www.cluweb.com/",
     "license": "MIT",
     "authors": [
         {
             "name": "Giorgio Resci",
             "role": "Developer",
             "email": "giorgio@cluweb.com",
-            "homepage": "https://github.com/gresci"
+            "homepage": "http://www.cluweb.com/"
         }
     ],
     "require": {
