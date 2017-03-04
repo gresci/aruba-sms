@@ -14,7 +14,7 @@ This package makes it easy to send notifications using [smsc.ru](//smsc.ru) (aka
 ## Contents
 
 - [Installation](#installation)
-    - [Setting up the SmscRu service](#setting-up-the-SmscRu-service)
+    - [Setting up the SmscAruba service](#setting-up-the-SmscAruba-service)
 - [Usage](#usage)
     - [Available Message methods](#available-message-methods)
 - [Changelog](#changelog)
@@ -30,7 +30,7 @@ This package makes it easy to send notifications using [smsc.ru](//smsc.ru) (aka
 You can install the package via composer:
 
 ```bash
-composer require laravel-notification-channels/smsc-ru
+composer require gresci/aruba-sms
 ```
 
 Then you must install the service provider:
@@ -38,18 +38,18 @@ Then you must install the service provider:
 // config/app.php
 'providers' => [
     ...
-    NotificationChannels\SmscRu\SmscRuServiceProvider::class,
+    NotificationChannels\SmscAruba\SmscArubaServiceProvider::class,
 ],
 ```
 
-### Setting up the SmscRu service
+### Setting up the SmscAruba service
 
-Add your SmscRu login, secret key (hashed password) and default sender name (or phone number) to your `config/services.php`:
+Add your SmscAruba login, secret key (hashed password) and default sender name (or phone number) to your `config/services.php`:
 
 ```php
 // config/services.php
 ...
-'smscru' => [
+'smscaruba' => [
     'login'  => env('SMSCRU_LOGIN'),
     'secret' => env('SMSCRU_SECRET'),
     'sender' => 'John_Doe'
@@ -63,19 +63,19 @@ You can use the channel in your `via()` method inside the notification:
 
 ```php
 use Illuminate\Notifications\Notification;
-use NotificationChannels\SmscRu\SmscRuMessage;
-use NotificationChannels\SmscRu\SmscRuChannel;
+use NotificationChannels\SmscAruba\SmscArubaMessage;
+use NotificationChannels\SmscAruba\SmscArubaChannel;
 
 class AccountApproved extends Notification
 {
     public function via($notifiable)
     {
-        return [SmscRuChannel::class];
+        return [SmscArubaChannel::class];
     }
 
-    public function toSmscRu($notifiable)
+    public function toSmscAruba($notifiable)
     {
-        return SmscRuMessage::create("Task #{$notifiable->id} is complete!");
+        return SmscArubaMessage::create("Task #{$notifiable->id} is complete!");
     }
 }
 ```

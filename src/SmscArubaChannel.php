@@ -1,16 +1,16 @@
 <?php
 
-namespace NotificationChannels\SmscRu;
+namespace NotificationChannels\SmscAruba;
 
 use Illuminate\Notifications\Notification;
-use NotificationChannels\SmscRu\Exceptions\CouldNotSendNotification;
+use NotificationChannels\SmscAruba\Exceptions\CouldNotSendNotification;
 
-class SmscRuChannel
+class SmscArubaChannel
 {
-    /** @var \NotificationChannels\SmscRu\SmscRuApi */
+    /** @var \NotificationChannels\SmscAruba\SmscArubaApi */
     protected $smsc;
 
-    public function __construct(SmscRuApi $smsc)
+    public function __construct(SmscArubaApi $smsc)
     {
         $this->smsc = $smsc;
     }
@@ -21,26 +21,26 @@ class SmscRuChannel
      * @param  mixed  $notifiable
      * @param  \Illuminate\Notifications\Notification  $notification
      *
-     * @throws  \NotificationChannels\SmscRu\Exceptions\CouldNotSendNotification
+     * @throws  \NotificationChannels\SmscAruba\Exceptions\CouldNotSendNotification
      */
     public function send($notifiable, Notification $notification)
     {
-        $to = $notifiable->routeNotificationFor('smscru');
+        $to = $notifiable->routeNotificationFor('smsaruba');
 
         if (empty($to)) {
             throw CouldNotSendNotification::missingRecipient();
         }
 
-        $message = $notification->toSmscRu($notifiable);
+        $message = $notification->toSmscAruba($notifiable);
 
         if (is_string($message)) {
-            $message = new SmscRuMessage($message);
+            $message = new SmscArubaMessage($message);
         }
 
         $this->sendMessage($to, $message);
     }
 
-    protected function sendMessage($recipient, SmscRuMessage $message)
+    protected function sendMessage($recipient, SmscArubaMessage $message)
     {
         if (mb_strlen($message->content) > 800) {
             throw CouldNotSendNotification::contentLengthLimitExceeded();

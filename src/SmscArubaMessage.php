@@ -1,8 +1,8 @@
 <?php
 
-namespace NotificationChannels\SmscRu;
+namespace NotificationChannels\SmscAruba;
 
-class SmscRuMessage
+class SmscArubaMessage
 {
     /**
      * The phone number the message should be sent from.

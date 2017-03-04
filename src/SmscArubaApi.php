@@ -1,17 +1,17 @@
 <?php
 
-namespace NotificationChannels\SmscRu;
+namespace NotificationChannels\SmscAruba;
 
 use DomainException;
 use GuzzleHttp\Client as HttpClient;
-use NotificationChannels\SmscRu\Exceptions\CouldNotSendNotification;
+use NotificationChannels\SmscAruba\Exceptions\CouldNotSendNotification;
 
-class SmscRuApi
+class SmscArubaApi
 {
     const FORMAT_JSON = 3;
 
     /** @var string */
-    protected $apiUrl = 'https://smsc.ru/sys/send.php';
+    protected $apiUrl = 'https://admin.sms.aruba.it/sms/send.php';
 
     /** @var HttpClient */
     protected $httpClient;
