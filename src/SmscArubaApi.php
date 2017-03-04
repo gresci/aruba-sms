@@ -52,7 +52,7 @@ class SmscArubaApi
     {
         $base = [
             //user=$SMSuser&pass=$SMSpass&rcpt=$rcpt&data=$messaggio&sender=$mittente&qty=$quality
-            'charset' => 'utf-8',
+//            'charset' => 'utf-8',
             'user'   => $this->login,
             'pass'     => $this->secret,
             'sender'  => $this->sender,

@@ -49,8 +49,10 @@ class SmscArubaChannel
         $params = [
             'rcpt'  => $recipient,
             'data'     => $message->content,
-            'sender'  => $message->from,
         ];
+
+        if($message->from)
+            $params['sender'] = $message->from;
 
         $this->smsc->send($params);
     }
