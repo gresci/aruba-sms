@@ -9,7 +9,7 @@ class SmscArubaServiceProvider extends ServiceProvider
     public function register()
     {
         $this->app->singleton(SmscArubaApi::class, function () {
-            $config = config('services.smsaruba');
+            $config = config('services.smscaruba');
 
             return new SmscArubaApi($config['login'], $config['secret'], $config['sender']);
         });
