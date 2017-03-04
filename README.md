@@ -41,8 +41,8 @@ Add your SmscAruba login, secret key (hashed password) and default sender name (
 // config/services.php
 ...
 'smscaruba' => [
-    'login'  => env('SMSCRU_LOGIN'),
-    'secret' => env('SMSCRU_SECRET'),
+    'login'  => env('SMSARUBA_LOGIN'),
+    'secret' => env('SMSARUBA_SECRET'),
     'sender' => 'John_Doe'
 ],
 ...

@@ -1,15 +1,15 @@
 <?php
 
-namespace NotificationChannels\SmscRu\Test;
+namespace NotificationChannels\SmscAruba\Test;
 
-use NotificationChannels\SmscRu\SmscRuMessage;
+use NotificationChannels\SmscAruba\SmscArubaMessage;
 
-class SmscRuMessageTest extends \PHPUnit_Framework_TestCase
+class SmscArubaMessageTest extends \PHPUnit_Framework_TestCase
 {
     /** @test */
     public function it_can_accept_a_content_when_constructing_a_message()
     {
-        $message = new SmscRuMessage('hello');
+        $message = new SmscArubaMessage('hello');
 
         $this->assertEquals('hello', $message->content);
     }
@@ -17,7 +17,7 @@ class SmscRuMessageTest extends \PHPUnit_Framework_TestCase
     /** @test */
     public function it_can_accept_a_content_when_creating_a_message()
     {
-        $message = SmscRuMessage::create('hello');
+        $message = SmscArubaMessage::create('hello');
 
         $this->assertEquals('hello', $message->content);
     }
@@ -25,7 +25,7 @@ class SmscRuMessageTest extends \PHPUnit_Framework_TestCase
     /** @test */
     public function it_can_set_the_content()
     {
-        $message = (new SmscRuMessage())->content('hello');
+        $message = (new SmscArubaMessage())->content('hello');
 
         $this->assertEquals('hello', $message->content);
     }
@@ -33,7 +33,7 @@ class SmscRuMessageTest extends \PHPUnit_Framework_TestCase
     /** @test */
     public function it_can_set_the_from()
     {
-        $message = (new SmscRuMessage())->from('John_Doe');
+        $message = (new SmscArubaMessage())->from('John_Doe');
 
         $this->assertEquals('John_Doe', $message->from);
     }

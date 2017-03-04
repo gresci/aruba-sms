@@ -1,28 +1,28 @@
 <?php
 
-namespace NotificationChannel\SmscRu\Tests;
+namespace NotificationChannel\SmscAruba\Tests;
 
 use Mockery as M;
 use Illuminate\Notifications\Notification;
-use NotificationChannels\SmscRu\SmscRuApi;
-use NotificationChannels\SmscRu\SmscRuChannel;
-use NotificationChannels\SmscRu\SmscRuMessage;
-use NotificationChannels\SmscRu\Exceptions\CouldNotSendNotification;
+use NotificationChannels\SmscAruba\SmscArubaApi;
+use NotificationChannels\SmscAruba\SmscArubaChannel;
+use NotificationChannels\SmscAruba\SmscArubaMessage;
+use NotificationChannels\SmscAruba\Exceptions\CouldNotSendNotification;
 
-class SmscRuChannelTest extends \PHPUnit_Framework_TestCase
+class SmscArubaChannelTest extends \PHPUnit_Framework_TestCase
 {
     /**
-     * @var SmscRuApi
+     * @var SmscArubaApi
      */
     private $smsc;
 
     /**
-     * @var SmscRuMessage
+     * @var SmscArubaMessage
      */
     private $message;
 
     /**
-     * @var SmscRuChannel
+     * @var SmscArubaChannel
      */
     private $channel;
 
@@ -30,9 +30,9 @@ class SmscRuChannelTest extends \PHPUnit_Framework_TestCase
     {
         parent::setUp();
 
-        $this->smsc = M::mock(SmscRuApi::class, ['test', 'test', 'John_Doe']);
-        $this->channel = new SmscRuChannel($this->smsc);
-        $this->message = M::mock(SmscRuMessage::class);
+        $this->smsc = M::mock(SmscArubaApi::class, ['test', 'test', 'John_Doe']);
+        $this->channel = new SmscArubaChannel($this->smsc);
+        $this->message = M::mock(SmscArubaMessage::class);
     }
 
     public function tearDown()
@@ -63,7 +63,7 @@ class SmscRuChannelTest extends \PHPUnit_Framework_TestCase
         $this->expectException(CouldNotSendNotification::class);
 
         $this->channel->send(
-            new TestNotifiableWithoutRouteNotificationForSmscru(), new TestNotification()
+            new TestNotifiableWithoutRouteNotificationForSmscaruba(), new TestNotification()
         );
     }
 }
@@ -76,7 +76,7 @@ class TestNotifiable
     }
 }
 
-class TestNotifiableWithoutRouteNotificationForSmscru extends TestNotifiable
+class TestNotifiableWithoutRouteNotificationForSmscaruba extends TestNotifiable
 {
     public function routeNotificationFor()
     {
@@ -86,8 +86,8 @@ class TestNotifiableWithoutRouteNotificationForSmscru extends TestNotifiable
 
 class TestNotification extends Notification
 {
-    public function toSmscRu()
+    public function toSmscAruba()
     {
-        return SmscRuMessage::create('hello')->from('John_Doe');
+        return SmscArubaMessage::create('hello')->from('John_Doe');
     }
 }
