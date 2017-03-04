@@ -11,7 +11,7 @@ class SmscArubaApi
     const FORMAT_JSON = 3;
 
     /** @var string */
-    protected $apiUrl = 'https://admin.sms.aruba.it/sms/send.php';
+    protected $apiUrl = 'http://admin.sms.aruba.it/sms/send.php';
 
     /** @var HttpClient */
     protected $httpClient;
@@ -25,11 +25,15 @@ class SmscArubaApi
     /** @var string */
     protected $sender;
 
-    public function __construct($login, $secret, $sender)
+    /** @var string */
+    protected $quality;
+
+    public function __construct($login, $secret, $sender, $quality='l')
     {
         $this->login = $login;
         $this->secret = $secret;
         $this->sender = $sender;
+        $this->quality = $quality;
 
         $this->httpClient = new HttpClient([
             'timeout' => 5,
@@ -47,17 +51,19 @@ class SmscArubaApi
     public function send($params)
     {
         $base = [
+            //user=$SMSuser&pass=$SMSpass&rcpt=$rcpt&data=$messaggio&sender=$mittente&qty=$quality
             'charset' => 'utf-8',
-            'login'   => $this->login,
-            'psw'     => $this->secret,
+            'user'   => $this->login,
+            'pass'     => $this->secret,
             'sender'  => $this->sender,
-            'fmt'     => self::FORMAT_JSON,
+            'qty'     => $this->quality,
         ];
 
         $params = array_merge($base, $params);
 
         try {
-            $response = $this->httpClient->post($this->apiUrl, ['form_params' => $params]);
+//            $response = $this->httpClient->post($this->apiUrl, ['form_params' => $params]);
+            $response = $this->httpClient->get($this->apiUrl, $params);
 
             $response = json_decode((string) $response->getBody(), true);
 

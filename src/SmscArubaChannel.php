@@ -47,8 +47,8 @@ class SmscArubaChannel
         }
 
         $params = [
-            'phones'  => $recipient,
-            'mes'     => $message->content,
+            'rcpt'  => $recipient,
+            'data'     => $message->content,
             'sender'  => $message->from,
         ];
 
