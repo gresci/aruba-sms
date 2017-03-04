@@ -71,10 +71,10 @@ class AccountApproved extends Notification
 }
 ```
 
-In your notifiable model, make sure to include a routeNotificationForSmsRu() method, which return the phone number.
+In your notifiable model, make sure to include a routeNotificationForSmsAruba() method, which return the phone number.
 
 ```php
-public function routeNotificationForSmsRu()
+public function routeNotificationForSmsAruba()
 {
     return $this->phone;
 }
