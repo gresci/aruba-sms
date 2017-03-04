@@ -26,12 +26,12 @@
     },
     "autoload": {
         "psr-4": {
-            "NotificationChannels\\ArubaSMS\\": "src"
+            "NotificationChannels\\SmscAruba\\": "src"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "NotificationChannels\\ArubaSMS\\Test\\": "tests"
+            "NotificationChannels\\SmscAruba\\Test\\": "tests"
         }
     },
     "config": {
