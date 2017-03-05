@@ -51,8 +51,6 @@ class SmscArubaApi
     public function send($params)
     {
         $base = [
-            //user=$SMSuser&pass=$SMSpass&rcpt=$rcpt&data=$messaggio&sender=$mittente&qty=$quality
-//            'charset' => 'utf-8',
             'user'   => $this->login,
             'pass'     => $this->secret,
             'sender'  => $this->sender,
@@ -62,13 +60,21 @@ class SmscArubaApi
         $params = array_merge($base, $params);
 
         try {
-//            $response = $this->httpClient->post($this->apiUrl, ['form_params' => $params]);
-            $response = $this->httpClient->get($this->apiUrl, $params);
+            $response = $this->httpClient->request('GET', $this->apiUrl, [
+                'query' => $params
+            ]);
+            
+            print_r($response->getBody());
+            exit(print_r($response));
 
-            $response = json_decode((string) $response->getBody(), true);
+            $response = $response->getBody();
 
-            if (isset($response['error'])) {
-                throw new DomainException($response['error'], $response['error_code']);
+//            if (isset($response['error'])) {
+//                throw new DomainException($response['error'], $response['error_code']);
+//            }
+
+            if ($response !== 'OK') {
+                throw new DomainException($response, $response);
             }
 
             return $response;
