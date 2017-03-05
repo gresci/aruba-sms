@@ -64,16 +64,19 @@ class SmscArubaApi
                 'query' => $params
             ]);
             
-            print_r($response->getBody());
-            exit(print_r($response));
+//            print_r($response->getBody());
+//            exit(print_r($response));
 
-            $response = $response->getBody();
+            $response = (string) $response->getBody();
+
+            print_r($response);
+            var_dump(strpos($response, 'OK'));
 
 //            if (isset($response['error'])) {
 //                throw new DomainException($response['error'], $response['error_code']);
 //            }
-
-            if ($response !== 'OK') {
+            
+            if(strpos($response, 'OK')){
                 throw new DomainException($response, $response);
             }
 
