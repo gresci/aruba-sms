@@ -64,13 +64,9 @@ class SmscArubaApi
                 'query' => $params
             ]);
 
-            print_r($params);
-
             $response = (string) $response->getBody();
 
-            print_r($response);
-            
-            if(strpos($response, 'OK') !== FALSE){
+            if(substr($response, 0, 2) !== "OK"){
                 throw new DomainException($response, $response);
             }
 
