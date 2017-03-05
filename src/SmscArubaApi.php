@@ -11,7 +11,7 @@ class SmscArubaApi
     const FORMAT_JSON = 3;
 
     /** @var string */
-    protected $apiUrl = 'http://admin.sms.aruba.it/sms/send.php';
+    protected $apiUrl = 'http://admin.sms.aruba.it/sms/send.php?';
 
     /** @var HttpClient */
     protected $httpClient;
@@ -63,6 +63,8 @@ class SmscArubaApi
             $response = $this->httpClient->request('GET', $this->apiUrl, [
                 'query' => $params
             ]);
+
+            print_r($params);
 
             $response = (string) $response->getBody();
 
