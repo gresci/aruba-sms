@@ -63,20 +63,10 @@ class SmscArubaApi
             $response = $this->httpClient->request('GET', $this->apiUrl, [
                 'query' => $params
             ]);
-            
-//            print_r($response->getBody());
-//            exit(print_r($response));
 
             $response = (string) $response->getBody();
-
-            print_r($response);
-            var_dump(strpos($response, 'OK'));
-
-//            if (isset($response['error'])) {
-//                throw new DomainException($response['error'], $response['error_code']);
-//            }
             
-            if(strpos($response, 'OK')){
+            if(strpos($response, 'OK') !== FALSE){
                 throw new DomainException($response, $response);
             }
 
