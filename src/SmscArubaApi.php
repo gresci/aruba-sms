@@ -28,7 +28,7 @@ class SmscArubaApi
     /** @var string */
     protected $quality;
 
-    public function __construct($login, $secret, $sender, $quality='l')
+    public function __construct($login, $secret, $sender, $quality='h')
     {
         $this->login = $login;
         $this->secret = $secret;
