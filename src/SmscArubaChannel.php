@@ -43,7 +43,9 @@ class SmscArubaChannel
     protected function sendMessage($recipient, SmscArubaMessage $message)
     {
         if(is_array($recipient)) {
-            $recipient = implode(',', $recipient);
+            $recipient = implode(',', array_map(function ($item){return '+39'.$item;},$recipient));
+        } else {
+            $recipient = '+39'.$recipient;
         }
         if (mb_strlen($message->content) > 800) {
             throw CouldNotSendNotification::contentLengthLimitExceeded();

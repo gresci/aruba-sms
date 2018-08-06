@@ -67,7 +67,7 @@ class SmscArubaApi
             $response = (string) $response->getBody();
 
             if(substr($response, 0, 2) !== "OK"){
-                throw new DomainException($response, $response);
+                throw new DomainException($response);
             }
 
             return $response;
