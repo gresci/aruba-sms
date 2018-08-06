@@ -42,6 +42,9 @@ class SmscArubaChannel
 
     protected function sendMessage($recipient, SmscArubaMessage $message)
     {
+        if(is_array($recipient)) {
+            $recipient = implode(',', $recipient);
+        }
         if (mb_strlen($message->content) > 800) {
             throw CouldNotSendNotification::contentLengthLimitExceeded();
         }

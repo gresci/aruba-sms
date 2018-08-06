@@ -11,7 +11,7 @@ class SmscArubaApi
     const FORMAT_JSON = 3;
 
     /** @var string */
-    protected $apiUrl = 'http://admin.sms.aruba.it/sms/send.php?';
+    protected $apiUrl = 'http://admin.sms.aruba.it/sms/batch.php?';
 
     /** @var HttpClient */
     protected $httpClient;
